@@ -24,6 +24,7 @@ class LightProfile(object):
     starcraft2 bnet landing page with only one http request.
     The aim of this class is to provide a low cost method to grab a small set
     of informations on a given profile."""
+
     _generation_time = None
 
     achievement_points = None
@@ -41,6 +42,7 @@ class LightProfile(object):
 
         profile_url must match a valid bnet url.
         example: http://eu.battle.net/sc2/en/profile/1041236/1/nopz/"""
+
         self._profile_url = profile_url
         if sc2profile.proxy_url:
             proxy_browser = browser.HTTPProxyBrowser(sc2profile.proxy_url)
