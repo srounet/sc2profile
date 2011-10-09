@@ -63,12 +63,14 @@ class LightProfile(object):
         With xpath facilities updates profile, and sets different informations
         available for usage.
         """
+
         try:
             response = self._browser.fetch(self._profile_url)
         except urllib2.URLError:
             raise InvalidProfileUrl('%s is not a valid profile url' %
                                     self._profile_url)
         profile_content = response.read()
+        profile_content = profile_content.decode('utf8')
         html = lhtml.document_fromstring(profile_content)
 
         percentage_wrapper = lambda x: round(float(x.split(' ')[1][:-1]), 2)
