@@ -50,6 +50,7 @@ class Profile(LightProfile):
         except urllib2.URLError:
             raise InvalidUrl('%s is not a valid url' % url)
         content = response.read()
+        content = content.decode('utf8').encode('utf8')
         html = lhtml.document_fromstring(content)
         return html
 

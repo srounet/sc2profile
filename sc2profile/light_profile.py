@@ -109,11 +109,12 @@ class LightProfile(object):
             """On some profile, the win ratio is not available.
             This wrapper is here to profide a unique interface
             for win/games informations."""
+
             bars_el = el.xpath("div[contains(@class, 'bars')]/div")
             if len(bars_el) == 1: # Game ratio (games/win) not available
                 if y == 1: return None
                 return int(bars_el[0].xpath("div/span/text()")[0].split()[0])
-            return int(bars_el[y].xpath("div/span/text()")[0].split()[0])
+            return float(bars_el[y].xpath("div/span/text()")[0].split()[0].replace(',', '.'))
 
         self.season_snapshot = {
             el.xpath("div[contains(@class, 'division')]")[0].text: {
