@@ -49,12 +49,13 @@ class LightProfile(object):
 
     def update(self):
         """Update current profile, with landing page informations."""
+
         start_time = time.time()
         self._update_summary()
         self._generation_time = str(round(time.time() - start_time, 3)) + " s"
 
     def _update_summary(self):
-        """"Fetch profile landing page in order to collect standard
+        """Fetch profile landing page in order to collect standard
         informations.
 
         Use default_browser in order to download in memory landing page, and
