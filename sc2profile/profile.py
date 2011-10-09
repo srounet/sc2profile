@@ -14,6 +14,8 @@ import time
 from urlparse import urljoin
 from sc2profile.light_profile import LightProfile
 
+from sc2profile import utils
+
 
 class InvalidUrl(Exception): pass
 
@@ -205,6 +207,6 @@ class Profile(LightProfile):
             'earned': 'unearned' not in el.get('class'),
             'date': _date_points_wrapper(el, -1),
             'points': _date_points_wrapper(el, 0),
-            'name': el.xpath("div/div")[2].text_content().strip().split('\r')[0].strip(),
-            'description': el.xpath("div/div")[2].text_content().strip().split('\r')[1].strip()
+            'name': utils.replace_html_code(el.xpath("div/div")[2].text_content().strip().split('\r')[0].strip()),
+            'description': utils.replace_html_code(el.xpath("div/div")[2].text_content().strip().split('\r')[1].strip())
         } for el in html.xpath("//div[@id='achievements-wrapper']/div")}
