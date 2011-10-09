@@ -10,6 +10,7 @@
 
 
 import lxml.html as lhtml
+import re
 import time
 import urllib2
 import sc2profile
@@ -35,6 +36,7 @@ class LightProfile(object):
     name = None
     season_snapshot = {}
     top_achievements = {}
+    portrait = {}
 
     def __init__(self, profile_url):
         """Initialize a new profile object, with profile_url as
@@ -128,3 +130,11 @@ class LightProfile(object):
             } for el in html.xpath("//div[@id='season-snapshot']/"
                 "div[contains(@class, 'module-body')]/div")
             if 'empty-season' not in el.get('class')}
+
+        portrait_span = html.xpath("//span[contains(@class, 'icon-frame')]/@style")[0]
+        pict_reg = r""".*portraits/([0-9\-]+).jpg.* ([\w\-]+) ([\w\-]+) """
+        match = re.search(pict_reg, portrait_span, re.DOTALL)
+        if match:
+            self.portrait['pict'] = match.groups()[0]
+            self.portrait['width'] = match.groups()[1]
+            self.portrait['height'] = match.groups()[2]
