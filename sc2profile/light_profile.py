@@ -86,15 +86,15 @@ class LightProfile(object):
                                   el.xpath("div[contains(@class, 'ladder')]/"
                                       "a")[0].get('href'))
 
-        self.name = html.xpath("//div[@id='profile-header']/h2/a/text()")[0]
-        self.achievement_points = html.xpath("//div[@id='profile-header']/"
-            "h3/text()")[0]
-        self.most_played_race = html.xpath("//div[@id='season-snapshot']/"
-            "div[@class='module-footer']/a/text()")[0]
-        self.league_win = html.xpath("//div[@id='career-stats']/"
-            "div[contains(@class, 'module-body')]/h2/text()")[0]
-        self.campaign = html.xpath("//div[@id='career-stats']/"
-            "div[contains(@class, 'module-body')]/h4[3]/text()")[0]
+        self.name = xpath_value(html.xpath("//div[@id='profile-header']/h2/a/text()"))
+        self.achievement_points = xpath_value(html.xpath("//div[@id='profile-header']/"
+            "h3/text()"))
+        self.most_played_race = xpath_value(html.xpath("//div[@id='season-snapshot']/"
+            "div[@class='module-footer']/a/text()"))
+        self.league_win = xpath_value(html.xpath("//div[@id='career-stats']/"
+            "div[contains(@class, 'module-body')]/h2/text()"))
+        self.campaign = xpath_value(html.xpath("//div[@id='career-stats']/"
+            "div[contains(@class, 'module-body')]/h4[3]/text()"))
 
         self.game_played = {list(el.itertext())[2].strip():
              int(el.xpath('span/text()')[0]) for
@@ -138,3 +138,8 @@ class LightProfile(object):
             self.portrait['pict'] = match.groups()[0]
             self.portrait['width'] = match.groups()[1]
             self.portrait['height'] = match.groups()[2]
+
+def xpath_value(xpath_node, default=None):
+    if not xpath_node:
+        return default
+    return xpath_node[0]
