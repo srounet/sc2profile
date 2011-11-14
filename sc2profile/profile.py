@@ -10,6 +10,7 @@
 
 
 import lxml.html as lhtml
+import urllib2
 import time
 from urlparse import urljoin
 from sc2profile.light_profile import LightProfile
@@ -94,21 +95,21 @@ class Profile(LightProfile):
         self.achievements = {
             'liberty_campaign': {
                 'Mar Sara Missions': self.handle_achievements(
-                    urljoin(self._profile_url, 'achievements/category/3211278')),
-                'Colonist Missions': self.handle_achievements(
-                    urljoin(self._profile_url, 'achievements/category/3211279')),
-                'Covert Missions': self.handle_achievements(
                     urljoin(self._profile_url, 'achievements/category/3211280')),
-                'Rebellion Missions': self.handle_achievements(
+                'Colonist Missions': self.handle_achievements(
                     urljoin(self._profile_url, 'achievements/category/3211281')),
-                'Artifact Missions': self.handle_achievements(
+                'Covert Missions': self.handle_achievements(
                     urljoin(self._profile_url, 'achievements/category/3211282')),
-                'Prophecy Missions': self.handle_achievements(
+                'Rebellion Missions': self.handle_achievements(
                     urljoin(self._profile_url, 'achievements/category/3211283')),
-                'Final Missions': self.handle_achievements(
+                'Artifact Missions': self.handle_achievements(
                     urljoin(self._profile_url, 'achievements/category/3211284')),
-                'Story Mode': self.handle_achievements(
+                'Prophecy Missions': self.handle_achievements(
                     urljoin(self._profile_url, 'achievements/category/3211285')),
+                'Final Missions': self.handle_achievements(
+                    urljoin(self._profile_url, 'achievements/category/3211286')),
+                'Story Mode': self.handle_achievements(
+                    urljoin(self._profile_url, 'achievements/category/3211287')),
                 }
         }
 
