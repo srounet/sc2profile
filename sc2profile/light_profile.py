@@ -90,7 +90,9 @@ class LightProfile(object):
         self.achievement_points = xpath_value(html.xpath("//div[@id='profile-header']/"
             "h3/text()"))
         self.most_played_race = xpath_value(html.xpath("//div[@id='season-snapshot']/"
-            "div[@class='module-footer']/a/text()"))
+            "div[@class='module-footer']/a/@class"))
+        if self.most_played_race:
+            self.most_played_race = self.most_played_race.replace('race-', '')
         self.league_win = xpath_value(html.xpath("//div[@id='career-stats']/"
             "div[contains(@class, 'module-body')]/h2/text()"))
         self.campaign = xpath_value(html.xpath("//div[@id='career-stats']/"
