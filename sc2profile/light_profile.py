@@ -126,7 +126,7 @@ class LightProfile(object):
             el.xpath("div[contains(@class, 'division')]")[0].text: {
                 'games': _games_wrapper(el, 0),
                 'win': _games_wrapper(el, 1),
-                'name': div_wrapper(el, 1),
+                'name': div_wrapper(el, 1).strip(),
                 'rank': int(div_wrapper(el, 2).strip()),
                 'link': link_wrapper(el)
             } for el in html.xpath("//div[@id='season-snapshot']/"
